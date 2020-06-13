@@ -1,0 +1,42 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <p>Your Profile setup</p>
+  <form [formGroup]="userForm" (ngSubmit)="validateUserForm()" fxLayout="column" fxLayoutAlign="center center">
+    <div>
+      <mat-form-field appearance="fill" [floatLabel]="'always'">
+        <mat-label>Enter your username</mat-label>
+        <input matInput type="text" placeholder="jondoe." formControlName="username">
+        <mat-error *ngIf="userForm.controls.username?.errors?.required"> Username required</mat-error>
+        <mat-error *ngIf="userForm.controls.username?.errors?.minlength"> Min of 8 chars</mat-error>
+        <mat-error *ngIf="userForm.controls.username?.errors?.maxlength"> Max of 31 chars</mat-error>
+        <mat-error *ngIf="userForm.controls.username?.errors?.redundantUser"> Username already Exists</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill" [floatLabel]="'always'">
+        <mat-label>Enter Password</mat-label>
+        <input matInput type="password" formControlName="password">
+        <mat-error *ngIf="userForm.controls.password?.errors?.pattern"> Password doesn't satify criteria</mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill" [floatLabel]="'always'">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" formControlName="password1">
+      </mat-form-field>
+    </div>
+    <mat-error *ngIf="userForm?.errors?.notIdentical">Passwords don't Match</mat-error>
+    <div *ngIf="userForm.controls.password?.invalid">
+      <span>
+        Password criteria
+      </span>
+      <div>
+        <div>Minimum of 8 chars</div>
+        <div>Should contain Atleast 1 Uppercase</div>
+        <div>Should contain Atleast 1 Number</div>
+        <div>Should contain Atleast 1 Special Char</div>
+      </div>
+    </div>
+    <button mat-raised-button color="primary" [disabled]="userForm.invalid">Next</button>
+  </form>
+</div>

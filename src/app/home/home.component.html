@@ -1,0 +1,7 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div *ngIf="resolvedData">
+    <h1>Resolved Data</h1>
+    <div>{{resolvedData | json}}</div>
+  </div>
+  <div *ngIf="!resolvedData">No Data</div>
+</div>

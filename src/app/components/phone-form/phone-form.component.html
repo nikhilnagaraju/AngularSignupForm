@@ -1,0 +1,28 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <p>Verify Your Phone Number</p>
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    [formGroup]="phoneForm"
+    (ngSubmit)="validatePhoneForm()" >
+    <div>
+      <mat-form-field appearance="fill" [floatLabel]="'always'">
+        <mat-label>Enter your phone number</mat-label>
+        <input matInput type="text" placeholder="9123912391" formControlName="phone">
+        <span matPrefix>+91</span>
+        <mat-error *ngIf="phoneForm.controls.phone?.errors"> Invalid Phone</mat-error>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" *ngIf="!requestedOTP" [disabled]="!phoneForm.controls.phone?.valid"
+      (click)="sendOTP()">Get OTP</button>
+
+    <div *ngIf="requestedOTP">
+      <mat-form-field appearance="fill" [floatLabel]="'always'">
+        <mat-label>Enter OTP</mat-label>
+        <input matInput type="number" placeholder="012034" formControlName="otp">
+        <mat-error *ngIf="phoneForm.controls.otp?.errors"> Invalid OTP</mat-error>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" *ngIf="requestedOTP" [disabled]="phoneForm.invalid">Next</button>
+  </form>
+</div>

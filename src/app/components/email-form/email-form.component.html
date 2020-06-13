@@ -1,0 +1,24 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <p>Verify Your Email</p>
+  <form fxLayout="column" fxLayoutAlign="center center" [formGroup]="emailForm" (ngSubmit)="validateEmailForm()">
+    <div>
+      <mat-form-field appearance="fill" [floatLabel]="'always'">
+        <mat-label>Enter your email</mat-label>
+        <input matInput placeholder="jon.doe@email.com" formControlName="email">
+        <mat-error *ngIf="emailForm.controls.email?.errors"> Invalid Email</mat-error>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" *ngIf="!requestedEmailOTP" [disabled]="!emailForm.controls.email?.valid"
+      (click)="sendOTP()">Get OTP</button>
+
+    <div *ngIf="requestedEmailOTP">
+      <mat-form-field appearance="fill" [floatLabel]="'always'">
+        <mat-label>Enter OTP</mat-label>
+        <input matInput type="number" placeholder="012034" formControlName="emailotp">
+        <mat-error *ngIf="emailForm.controls.emailotp?.errors"> Invalid OTP</mat-error>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" *ngIf="requestedEmailOTP" [disabled]="emailForm.invalid">Next</button>
+  </form>
+
+</div>

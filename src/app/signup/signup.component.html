@@ -1,1 +1,17 @@
-<p>signup works!</p>
+<div fxLayout="column" fxLayoutAlign="center center">
+  <p>Demo Signup Form</p>
+  <mat-tab-group [selectedIndex]="formsTabIndex" mat-align-tabs="center">
+    <mat-tab label="Step 1" [disabled]="formsTabIndex!==0">
+      <app-phone-form (phoneInfo)=getPhoneInfo($event)></app-phone-form>
+    </mat-tab>
+    <mat-tab label="Step 2" [disabled]="formsTabIndex!==1">
+      <app-email-form (emailInfo)=getEmailInfo($event)></app-email-form>
+    </mat-tab>
+    <mat-tab label="Step 3" [disabled]="formsTabIndex!==2">
+      <app-user-form (userInfo)=getUserInfo($event)></app-user-form>
+    </mat-tab>
+    <mat-tab label="Step 4" [disabled]="formsTabIndex!==3">
+      <app-location-form (locationInfo)=getLocationInfo($event)></app-location-form>
+    </mat-tab>
+  </mat-tab-group>
+</div>

@@ -1,0 +1,5 @@
+{
+  "phoneOTP": 123456,
+  "emailOTP": 123456,
+  "users": ["jondoe123", "ramesh", "suresh", "john"]
+}
